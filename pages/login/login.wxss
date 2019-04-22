@@ -1,0 +1,72 @@
+/* pages/login/login.wxss */
+.loginView>.loginTitle{
+  margin-bottom: 40px;
+  font-size: 60rpx;
+  font-weight: bold;
+}
+.loginView{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top:200rpx;
+}
+.loginView>.phoneNumber{
+  position: relative;
+  width:100%;
+}
+.loginView>.phoneNumber>input{
+  width: 100%;
+  height: 50px;
+  padding-left:70px;
+  padding-right:120px;
+  background-color: #fff;
+}
+.loginView>.phoneNumber>.tips{
+  position: absolute;
+  left:10px;
+  top:14px;
+}
+.loginView>.phoneNumber>button{
+  position: absolute;
+  right:0;
+  top:0;
+  height:50px;
+  width:120px;
+  background-color: #fff;
+  /* border:none; */
+  border-left:1px solid #ddd;
+  border-radius: 0;
+  color: #179B16;
+}
+.loginView>.phoneNumber>button::after{
+  border:none;
+}
+.loginView>.verifacationCode{
+  width:100%;
+  position: relative;
+}
+.loginView>.verifacationCode>input{
+  width:100%;
+  height: 50px;
+  padding-left:70px;
+  background-color: #fff;
+  border-top:1px solid #ddd;
+}
+.loginView>.verifacationCode>.tips{
+  position: absolute;
+  left:10px;
+  top:14px;
+}
+.loginView>.loginBtn{
+  width:calc(100% - 20px);
+  margin:30px 0 20px;
+}
+.loginView>.wxLoginBtn{
+  font-size: 14px;
+}
+.loginView>.wxLoginBtn::after{
+  border:none;
+}
+.btnActive{
+  background-color:rgba(0,0,0,.15) !important;
+}

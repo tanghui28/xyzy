@@ -1,0 +1,66 @@
+<!--pages/order/order.wxml-->
+<!-- searchBar -->
+<view class="fixed">
+  <view class="searchBar" hover-class="none" hover-stop-propagation="false">
+    <icon type="search" size="23" color="#999"></icon>
+    <input type="text" value="{{keyWord}}" bindinput="bindInputChange" bindconfirm="searchMedicine" confirm-type="search" />
+    <text bindtap="searchMedicine">搜索</text>
+  </view>
+  <!-- 筛选 -->
+  <view class="filterView">
+    <text>筛选:</text>
+    <text bindtap="tapFilter" data-index="{{index}}" class="filterItem {{item.selected?'active':''}}" wx:for="{{filterItem}}" wx:key="{{index}}">{{item.filterName}}</text>
+  </view>
+</view>
+<!--  需求单详情 -->
+<view class="orderList">
+    <view class="orderItem" wx:for="{{orderList}}" wx:key="{{index}}">
+      <!-- 上 -->
+      <view class="orderDate" >
+        <text>{{item.CreateTime1}}</text>
+      </view>
+      <!-- 中 需求详情-->
+      <view class="orderDetail">
+        <!-- 中左 图片-->
+        <view class="imgContainer">
+          <image  data-index="{{index}}" src="{{item.ImagePath}}"  binderror="errorPic" mode="aspectFit"></image>
+        </view>
+        
+        <!-- 中中 名字 规格 厂家 购买数量 -->
+        <view class="orderInfo">
+          <text class="productName">{{item.DrugsBase_DrugName}}</text>
+          <text class="productSpec">{{item.DrugsBase_Specification}}</text>
+          <text class="productFactory">{{item.DrugsBase_Manufacturer}}</text>
+          <view>
+            <text>需求数量:</text>
+            <text class="buyCount">{{item.ProcurementNumber}}</text>
+          </view>
+        </view>
+        <!-- 中右 -->
+        <view class="orderState">
+          <text class="{{item.StatusInfo == '已采购'?'success':(item.StatusInfo == '已取消'?'cancel':'')}}">{{item.StatusInfo}}</text>
+          <text>{{item.StatusInfoOperating}}</text>
+        </view>
+      </view>
+      <!-- 下 -->
+      <view class="orderRemark">
+        <!-- 下左 -->
+        <view class="orderRemarkDetail">
+          <view wx:if="{{item.ExpectArriveTime1}}">
+            <text>期望到货:</text>
+            <text>{{item.ExpectArriveTime1}}</text>
+          </view>
+          <text class="remark">{{item.remarks}}</text>
+        </view>
+        <!-- 下右  删除按钮 -->
+        <text wx:if="{{item.StatusInfo == '待审批'}}"  bindtap="deleteOrder" data-id="{{item.Id}}" data-index="{{index}}" class="deleteBtn">删除</text>
+      </view>
+    </view>
+    <!-- 我也是有底线的 -->
+    <view wx:if="{{pageIndex ==  pageTotal}}" class="endLine">
+      <text class="line"></text>
+      <text>我是有底线的</text>
+      <text class="line"></text>
+    </view>
+
+</view>

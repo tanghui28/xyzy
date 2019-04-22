@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/login/login",
+    "pages/order/order",
+    "pages/storeBinding/storeBinding",
+    "pages/search/search",
+    "pages/productDetail/productDetail",
+    "pages/submitSuccess/submitSuccess",
+    "pages/chooseStore/chooseStore",
+    "pages/switchStore/switchStore"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2B2A30",
+    "navigationBarTitleText": "小优找药",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#0D72B6",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/home_not_select.png",
+        "selectedIconPath": "images/home_selected.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "需求单",
+        "iconPath": "images/order_not_select.png",
+        "selectedIconPath": "images/order_selected.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,177 @@
+/* pages/productDetail/productDetail.wxss */
+/* 商品详情 */
+.product{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  height:120px;
+  padding:10px 10px;
+  margin-bottom:10px;
+}
+.product>.productImage{
+  width:128px;
+  height:80px;
+}
+.product>.productInfo{
+  width:calc(100% - 128px);
+  display: flex;
+  flex-direction: column;
+  /* align-self: flex-start; */
+  padding-left:20px;
+}
+.product>.productInfo text{
+  color:#999;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.product>.productInfo>.productName{
+  font-size: 16px;
+  color:#000;
+  margin-bottom: 6px;
+}
+.product>.productInfo>.productFactory{
+  margin-bottom: 6px;
+}
+.product>.productInfo>.productPrice>.tips {
+  margin-right:10px;
+}
+.product>.productInfo>.productPrice>text:not(.tips){
+  font-size: 16px;
+  color:#E91C23;
+}
+
+/* 采购数量 */
+.buyCount{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  margin-bottom:10px;
+}
+.buyCount>.title{
+  border-bottom:1px solid #ddd;
+  padding:10px;
+  color:#999;
+}
+.buyCount>.detail{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height:100px;
+}
+.buyCount>.detail>.tips{
+  width:120px;
+  text-align:center;
+}
+.buyCount>.detail>.btnGroup{
+  width:calc(100% - 120px);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.buyCount>.detail>.btnGroup>input{
+  width:80px;
+  height: 46px;
+  background-color: #fff;
+  border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+  text-align: center;
+}
+.buyCount>.detail>.btnGroup>button{
+  width:50px;
+  height:46px;
+  margin:0;
+}
+.buyCount>.detail>.btnGroup>button.reduceBtn::after{
+  border-radius: 0;
+  border:0;
+}
+.buyCount>.detail>.btnGroup>button.reduceBtn{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border:1px solid #ddd;
+}
+.buyCount>.detail>.btnGroup>button.addBtn::after{
+  border-radius: 0;
+  border: 0;
+}
+.buyCount>.detail>.btnGroup>button.addBtn{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border:1px solid #ddd;
+}
+
+/* 选填内容  到货时间以及备注 */
+.remarks{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+.remarks>.title{
+  color:#999;
+  padding:10px;
+  border-bottom:1px solid #ddd;
+}
+.remarks>.remarksDetail{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:12px;
+}
+.remarks>.remarksDetail>.pickerDate{
+  height:60px;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom:10px;
+}
+.remarks>.remarksDetail>.pickerDate>text{
+  width:100px;
+  text-align: right;
+  padding-right:12px;
+}
+.remarks>.remarksDetail>.pickerDate>picker{
+  border:1px solid #ddd;
+  background-color: #fff;
+  height:44px;
+  line-height: 44px;
+  width:calc(100% - 100px);
+  border-radius: 4px;
+  color:#999;
+  position: relative;
+  padding-left:42px;
+}
+.remarks>.remarksDetail>.pickerDate .dateIcon {
+  position: absolute;
+  left:4px;
+  top:6px;
+  width:32px;
+  height:32px;
+}
+.remarks>.remarksDetail>.note{
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.remarks>.remarksDetail>.note>text{
+  width:100px;
+  text-align: right;
+  padding-right:12px;
+}
+.remarks>.remarksDetail>.note>textarea{
+  width:calc(100% - 100px);
+  height:80px;
+  border:1px solid #DCDFE6;
+  border-radius: 4px;
+  padding:4px;
+}
+
+.submitBtn{
+  width:90%;
+  margin-top: 32px;
+  margin-bottom: 20px;
+}

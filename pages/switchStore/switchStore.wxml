@@ -1,0 +1,8 @@
+<view class="switchStore">
+  <text class="title">切换门店</text>
+  <input bindtap="toChooseStore" class="chooseInput" value="{{storeName}}" type="text" placeholder=""  placeholder-class="input-placeholder" 
+    disabled="true" focus="false">
+      <image class="dropDown" mode="aspectFit"  src="../../images/drop.png"></image>
+  </input>
+  <button bindtap="goHome" class="confirmBtn" size="default" type="primary" >确定</button>
+</view>

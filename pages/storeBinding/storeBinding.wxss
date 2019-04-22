@@ -1,0 +1,40 @@
+/* pages/storeBinding/storeBinding.wxss */
+.storeBinding{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:60px 10px 0 10px;
+}
+.storeBinding>.loginSuccess{
+  margin:20px 0;
+  font-size: 18px;
+}
+.storeBinding>.tips{
+  color:#999;
+  font-size: 14px;
+  margin-bottom:30px;
+}
+.storeBinding>input{
+  width:90%;
+  height: 46px;
+  border:1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  position: relative;
+  margin-bottom:30px;
+  padding:0 20px;
+}
+.storeBinding .dropDown{
+  position: absolute;
+  right:14px;
+  top:10px;
+  width:16px;
+  height:16px;
+}
+.storeBinding view.picker{
+  padding: 14px;
+  
+}
+.storeBinding>button{
+  width:90%;
+}

@@ -1,0 +1,4 @@
+<!--pages/chooseStore/chooseStore.wxml-->
+<view class="storeList">
+  <view bindtap="getStoreId" hover-class="hover" data-storeid="{{item.id}}" data-storename="{{item.text}}" wx:for="{{storeList}}" wx:key="{{index}}">{{item.text}}</view>
+</view>

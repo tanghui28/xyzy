@@ -1,0 +1,19 @@
+<!--pages/login/login.wxml-->
+<view class="loginView">
+  <text class="loginTitle">小优找药</text>
+  <!-- 手机号 -->
+  <view class="phoneNumber">
+    <text class="tips">手机号</text>
+    <input  bindinput="testPhoneNumber" type="number" value="{{phoneNumber}}" placeholder="请输入手机号" />
+    <button bindtap="getVerifacationCode" disabled="{{btnStr != '获取验证码'}}" hover-class="btnActive">{{btnStr}}</button>
+  </view>
+  <!-- 验证码 -->
+  <view class="verifacationCode">
+    <text class="tips">验证码</text>
+    <input bindinput="testVerifacationCode" value="{{verifacationCode}}" type="number" placeholder="请输入验证码"/>
+  </view>
+  <!-- 按钮 -->
+  <button bindtap="login" disabled="{{!phoneNumberPass || !verifacationCodePass}}" class="loginBtn" type="primary">登录</button>
+  <button open-type="getPhoneNumber"  bindgetphonenumber="getPhoneNumber" class="wxLoginBtn">微信用户一键登录</button>
+
+</view>

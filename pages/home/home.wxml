@@ -1,0 +1,17 @@
+<!--pages/home/home.wxml-->
+<view class="container">
+    <!-- <text class="appName" selectable="false" space="false" decode="false">
+        小优找药
+    </text> -->
+    <image class="xyzyLogo" src="/images/xyzy-logo.png" mode="aspectFit"></image>
+    <text class="slogan">为您留住每一位顾客</text>
+    <view class="searchContainer" hover-class="none" hover-stop-propagation="false">
+        <input bindtap="focusHandler" type="text" disabled="true" confirm-type="search"/>
+        <icon bindtap="focusHandler"  type="search" size="23" color="#999"></icon>
+        <text bindtap="focusHandler"  selectable="false" space="false" decode="false">搜索</text>
+    </view>
+    <!-- 当前门店名 及 切换门店按钮 -->
+    <view>
+        <text class="storeName">{{userInfo[0]}}</text><text bindtap="toSwitchStore" wx:if="{{userInfo!=''}}" class="switch">切换</text>
+    </view>
+</view>

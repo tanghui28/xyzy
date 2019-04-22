@@ -1,0 +1,10 @@
+<!--pages/storeBinding/storeBinding.wxml-->
+<view class="storeBinding">
+  <icon class="" type="success" size="100"></icon>
+  <text class="loginSuccess">登录成功!</text>
+  <text class="tips">尚未选择所属门店，请正确选择门店后进行下一步操作。</text>
+  <input bindtap="chooseStore" value="{{storeName}}" disabled="true" placeholder="点击选择所属门店">
+    <image class="dropDown" src="../../images/drop.png" mode="aspectFit" ></image>
+  </input>
+  <button bindtap="goHome" disabled="{{storeId==''}}"  size="default" type="primary">下一步</button>
+</view>

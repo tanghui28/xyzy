@@ -1,0 +1,7 @@
+<!--pages/submitSuccess/submitSuccess.wxml-->
+<view class="submitSuccess">
+  <icon class="" type="success" size="100" color=""></icon>
+  <text class="successText">提交成功</text>
+  <button bindtap="goHome" class="default" size="default" type="primary" >确定</button>
+  <button bindtap="goOrder" class="default" size="default" type="default" >查看</button>
+</view>

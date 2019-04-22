@@ -1,0 +1,63 @@
+<!-- pages/productDetail/productDetail.wxml -->
+<!-- 上 商品详情 -->
+<view class="product">
+  <!-- 上左图片 -->
+  <image class="productImage" src="{{productDetail.imagePath}}" mode="aspectFit"></image>
+  <!-- 上右 文字详情 -->
+  <view class="productInfo">
+    <text class="productName">{{productDetail.drugName}}</text>
+    <text class="productSpec">{{productDetail.drugSpec}}</text>
+    <text class="productFactory">{{productDetail.drugManufaturer}}</text>
+    <view class="productPrice">
+      <text class="tips">建议零售价</text>
+      <text class="price">{{productDetail.priceS}}</text>
+      <text wx:if="{{productDetail.priceE !=  productDetail.priceS}}"> ~ </text>
+      <text wx:if="{{productDetail.priceE !=  productDetail.priceS}}">{{productDetail.priceE}}</text>
+    </view>
+  </view>
+</view>
+<!-- 中采购数量 -->
+<view class="buyCount">
+  <!-- 中上标题 -->
+  <view class="title">
+    <text>必填内容</text>
+  </view>
+  <!-- 中左 文字 -->
+  <view class="detail">
+    <view class="tips">
+      <text>采购数量</text>
+    </view>
+    <!-- 中右 按钮组 -->
+    <view class="btnGroup">
+      <button bindtap="reduceBuyCount" class="reduceBtn" size="default" type="default">-</button>
+      <input bindinput="buyCountChange"  bindblur="buyCountBlur" value="{{buyCount}}" type="number"></input>
+      <button bindtap="addBuyCount" class="addBtn" size="default" type="default">+</button>
+    </view>
+  </view>
+</view>
+<!-- 下 选填内容提交 -->
+<view class="remarks">
+  <!-- 下上 title -->
+  <view class="title">
+    <text>选填内容</text>
+  </view>
+  <!-- 下下 备注 -->
+  <view class="remarksDetail">
+    <!-- 到货时间 选择 -->
+    <view class="pickerDate">
+      <text>到货时间</text>
+      <picker bindchange="bindDateChange" mode="date" value="{{date}}">
+        <view>{{date}}</view>
+        <image class="dateIcon" src="../../images/pickerDate.png" mode="aspectFit"></image>
+      </picker>
+    </view>
+    <!-- 备注  选填 -->
+    <view class="note">
+      <text>备注</text>
+      <textarea value="{{remark}}" bindinput="remarkChange" placeholder="备注信息" maxlength="100"></textarea>
+    </view>
+  </view>
+  
+</view>
+
+<button bindtap="submitProduct" class="submitBtn" type="primary">提交</button>
