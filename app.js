@@ -12,44 +12,6 @@ App({
 
       },
       fail:()=> { 
-        // console.log('异步读取失败');
-        // wx.login({
-        //   success: res => {
-        //     if (res.code) {
-        //       wx.request({
-        //         url: "https://zy.sosoyy.com:449/WXApi/wxlogin",
-        //         data: {
-        //           code: res.code
-        //         },
-        //         method: 'post',
-        //         dataType: 'json',
-        //         success: res => {
-        //           //设置全局wx_token
-        //           this.globalData.header.Cookie = "wx_token=" + res.data.data;
-        //           //  缓存全局wx_token
-        //           // wx.setStorage({
-        //           //   key: 'xySession',
-        //           //   data: res.data.data
-        //           // });
-
-        //           //同步缓存
-        //           try {
-        //             wx.setStorageSync('xySession', res.data.data);
-        //           } catch (e) { 
-
-        //           }
-                  
-
-
-        //         }
-        //       })
-        //     } else {
-        //       //登录失败
-
-        //     }
-
-        //   }
-        // })
 
 
       }
@@ -57,12 +19,12 @@ App({
 
     // https://zy.sosoyy.com:449
     // https://zy.sosoyy.com:449
+    //http://192.168.49:8083
     
 
   },
   isLogin() { 
-    // var wx_token = wx.getStorageSync("xySession");
-    // console.log(wx_token);
+
     if (this.globalData.Cookie) {
       //console.log("发现本地缓存session");
       this.checkSession();
@@ -71,8 +33,7 @@ App({
       wx.getStorage({
         key: "xySession",
         success: (res) => {
-          // console.log(res.data);
-          // this.globalData.wx_token = res.data;
+
           this.globalData.header.Cookie = 'wx_token='+ res.data;
           this.checkSession();
         },
@@ -81,7 +42,7 @@ App({
           wx.login({
             success: res => {
               if (res.code) {
-                // console.log(res.code);
+
                 wx.request({
                   url: "https://zy.sosoyy.com:449/WXApi/wxlogin",
                   data: {

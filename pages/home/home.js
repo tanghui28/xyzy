@@ -42,9 +42,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // setTimeout(() => {
-    //     console.log(app.globalData.userInfo)
-    // }, 2000);
+
     getApp().watch(this.watchBack)
     app.isLogin();
 

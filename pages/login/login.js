@@ -116,15 +116,6 @@ Page({
   // 手机号,验证码登录
   login() { 
 
-    // var wx_session = wx.getStorageSync("wx_session");
-    // if (!wx_session) { 
-    //   wx.showToast({
-    //     title: '本地存储异常',
-    //     icon:'none'
-    //   })
-    //   return;
-    // }
-
     app.ajaxNo({
       url: 'LoginForVerificationCode',
       data: {
@@ -168,9 +159,8 @@ Page({
     app.ajax({
       url: "LoginForMobile",
       data: e.detail,
-      // data: "&iv=" + e.detail.iv + "&encryptedData=" + e.detail.encryptedData,
       callback: (res) => { 
-        // console.log(res);
+
         if (res.success) {
           //登录成功, data值等于0跳转到绑定店铺页面 , 非0则跳转至首页
           if (res.data != 0) {
@@ -198,7 +188,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options)
+
 
     if (options.error == "1") { 
       wx.showModal({
