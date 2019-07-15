@@ -50,7 +50,7 @@ Page({
        success: (res) => {
          if (res.confirm) {
            //确认退出
-           app.ajax({
+           app.ajaxNo({
              url: "LogOut",
              callback: res => {
                if (!res.success) {
