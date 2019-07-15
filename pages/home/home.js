@@ -39,6 +39,44 @@ Page({
   },
 
   /**
+   *  退出
+   */
+  logOut(){
+
+
+     wx.showModal({
+       title: '',
+       content: '是否确认退出 ?',
+       success: (res) => {
+         if (res.confirm) {
+           //确认退出
+           app.ajax({
+             url: "LogOut",
+             callback: res => {
+               if (!res.success) {
+                 wx.showToast({
+                   title: res.info,
+                   icon: "none"
+                 })
+               } else { 
+                 wx.reLaunch({
+                   url:'/pages/login/login'
+                 })
+               }
+             }
+           })
+
+
+
+         } else if (res.cancel) {
+
+         }
+       }
+     })
+
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {

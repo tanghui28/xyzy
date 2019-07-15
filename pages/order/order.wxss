@@ -166,6 +166,14 @@ page{
   color:#999;
   width:calc(100% - 50px);
 }
+.refuse{
+  font-size: 14px;
+  color:#999;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+
+}
 .orderList>.orderItem>.orderRemark>.orderRemarkDetail>.remark{
   width:100%;
   overflow: hidden;
@@ -179,5 +187,6 @@ page{
   border-radius: 20px;
   width:50px;
 }
+
 
 

@@ -49,8 +49,25 @@
 }
 .storeName{
     color: #999;
+
+    text-align: center;
 }
 .switch{
     color:#179B16;
     padding:14px;
+
+}
+.logOut{
+    color: #EB4746;
+    padding: 14px;
+    position: relative;
+    right: -60px;
+    
+}
+.btns{
+    width: 100%;
+    padding: 40px 20px 30px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

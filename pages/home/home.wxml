@@ -11,7 +11,9 @@
         <text bindtap="focusHandler"  selectable="false" space="false" decode="false">搜索</text>
     </view>
     <!-- 当前门店名 及 切换门店按钮 -->
-    <view>
-        <text class="storeName">{{userInfo[0]}}</text><text bindtap="toSwitchStore" wx:if="{{userInfo!=''}}" class="switch">切换</text>
+    <view class="btns">
+        <text class="storeName">{{userInfo[0]}}</text>
+        <text bindtap="toSwitchStore" wx:if="{{userInfo!=''}}" class="switch">切换</text>
+        <text bindtap="logOut" class="logOut">退出</text>
     </view>
 </view>

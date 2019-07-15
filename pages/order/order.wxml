@@ -55,6 +55,14 @@
         <!-- 下右  删除按钮 -->
         <text wx:if="{{item.StatusInfo == '待审批'}}"  bindtap="deleteOrder" data-id="{{item.Id}}" data-index="{{index}}" class="deleteBtn">删除</text>
       </view>
+
+            <!-- 下下  采购回复 -->
+      <view wx:if="{{  item.RefusedReason }}" class="refuse">
+        采购回复:
+        {{item.RefusedReason}}
+      </view>
+
+
     </view>
     <!-- 我也是有底线的 -->
     <view wx:if="{{pageIndex ==  pageTotal}}" class="endLine">

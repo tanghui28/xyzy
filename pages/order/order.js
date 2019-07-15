@@ -53,7 +53,7 @@ Page({
   },
   // 删除
   deleteOrder(e) { 
-    // console.log(e.target.dataset.index);
+
     wx.showModal({
       title: '',
       content: '要删除这条需求吗?',
@@ -101,7 +101,7 @@ Page({
   },
   //input 键盘事件 / 搜索按钮
   searchMedicine() { 
-    // if (this.data.keyWord.trim() == "") return;
+
     this.setData({
       pageIndex:1
     })
