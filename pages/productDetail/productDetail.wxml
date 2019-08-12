@@ -7,7 +7,7 @@
   <view class="productInfo">
     <text class="productName">{{productDetail.drugName}}</text>
     <text class="productSpec">{{productDetail.drugSpec}}</text>
-    <text class="productFactory">{{productDetail.drugManufaturer}}</text>
+    <text class="productFactory">{{productDetail.drugManufacturer}}</text>
     <view class="productPrice">
       <text class="tips">建议零售价</text>
       <text class="price">{{productDetail.priceS}}</text>

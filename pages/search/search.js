@@ -12,7 +12,8 @@ Page({
     pageIndex: 1,
     pageTotal: 0,
     getSuggestionTime: 0,
-    getSearchTime:0
+    getSearchTime: 0,
+    isInput:true,              
   },
   //点击取消搜索,返回上一页
   cancel() { 
@@ -85,16 +86,19 @@ Page({
   },
   //点击搜索历史
   tapHistory(e){
-    // console.log(e);
-    // console.log(e.currentTarget.dataset.name);
+
     this.setData({
       keyWord: e.currentTarget.dataset.name,
       pageIndex: 1,
       pageTotal: 0,
-      list: []
+      list: [],
+      isInput:false
+    }, function () { 
+        this.getList();
+        this.searchSave(e.currentTarget.dataset.name);
     });
-    this.searchSave(e.currentTarget.dataset.name);
-    this.getList();
+    
+    
   },
   // 点击搜索建议词
   tapSuggest(e) { 
@@ -141,6 +145,7 @@ Page({
     //将搜索建议置空
 
     this.setData({
+      keyWord: e.detail.value.trim(),
       searchSuggestions: [],
       pageIndex: 1,
       pageTotal: 0,
@@ -154,7 +159,17 @@ Page({
    * input组件输入事件
    */
   getSuggestion(e) { 
-    // console.log(e.detail.value);
+    // input组件bug  更改绑定value触发input事件
+    if (!this.data.isInput) {
+
+      this.setData({
+        isInput: true
+      })
+      return;
+
+    }
+    
+
     this.setData({
       getSuggestionTime: (new Date()).getTime()
     })

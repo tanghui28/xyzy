@@ -15,7 +15,7 @@ page{
 .searchBar icon{
     position: absolute;
     left:18px;
-    top:16px;
+    top:14px;
 }
 .searchBar input{
     background-color: #fff;
@@ -83,9 +83,9 @@ page{
 }
 .searchHistory>.historyDetail>text{
     background-color: #efeff4;
-    padding:2px 10px;
+    padding:4px 12px;
     border-radius: 20px;
-    margin:4px 4px;
+    margin:6px;
     font-size: 14px;
     color:#999;
 }
