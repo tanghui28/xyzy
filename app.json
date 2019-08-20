@@ -8,7 +8,8 @@
     "pages/productDetail/productDetail",
     "pages/submitSuccess/submitSuccess",
     "pages/chooseStore/chooseStore",
-    "pages/switchStore/switchStore"
+    "pages/switchStore/switchStore",
+    "pages/addRequireProduct/addRequireProduct"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,63 @@
+<!-- 必填内容 -->
+<view class="required container">
+  <text class="title">必填内容</text>
+  <!-- 必填项 -->
+  <view class="requiredItem">
+    <text>通用名</text>
+    <input value="{{  drugName }}"  bindinput="drugNameInput" type="text" />
+  </view>
+  <view class="requiredItem">
+    <text>规格</text>
+    <input value="{{ spec }}" bindinput="specInput" type="text" />
+  </view>
+  <view class="requiredItem">
+    <text>生产厂家</text>
+    <input value="{{ factory }}"  bindinput="factoryInput"  type="text" />
+  </view>
+  <view class="requiredItem">
+    <text>需求数量</text>
+    <input value="{{count}}"  bindinput="countInput"  type="number" />
+  </view>
+
+</view>
+
+
+
+<!-- 选填内容 -->
+<view class="container">
+  <text>选填内容</text>
+  <!-- 选填项 -->
+  <view class="optional">
+    <text>商品名</text>
+    <input bindinput="productNameInput" value="{{ productName }}" type="text" />
+  </view>
+  <view class="optional">
+    <text>批准文号</text>
+    <input bindinput="pwInput" value="{{ pw }}" type="text" />
+  </view>
+  <view class="optional remarks">
+    <text>备注</text>
+    <textarea  value="{{ remarks }}" bindinput="remarkInput"  maxlength="200">
+      <text class="tip">{{len}}/200</text>
+    </textarea>
+  </view>
+
+
+  <!-- 图片 -->
+  <view class="img-title">包装盒图片</view>
+  <view class="img-tips">请注意拍摄画质尽量清晰，突出关键信息。非必填项。</view>
+  
+  <view class="img-container">
+    <view class="preview-img" wx:for="{{  files }}" wx:key="{{index}}" >
+      <image src="{{ item.path }}" mode="aspectFill"></image>
+      <text  wx:if="{{ id === null }}" bindtap="deleteImg" data-index="{{index}}" class="delete">删除</text>
+    </view>
+    <view wx:if="{{ id === null }}" bindtap="chooseImg" class="addImg">+</view>
+  </view>
+
+</view>
+
+<!-- 提交按钮 -->
+<view class="bottomBtns">
+  <button bindtap="commit" class="commit" type="primary">提交</button>
+</view>

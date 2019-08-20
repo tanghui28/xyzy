@@ -1,0 +1,145 @@
+page{
+  padding-bottom: 60px;
+}
+.container{
+  background-color: #fff;
+  margin-bottom: 20px;
+  /* padding: 14px 0; */
+}
+.container>text:nth-child(1){
+  display: block;
+  color: #999;
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  padding-left: 12px;
+}
+.container .requiredItem{
+  height: 68px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 14px;
+}
+.container .requiredItem>text{
+  display: inline-block;
+  width: 90px;
+}
+.container .requiredItem>input{
+  /* display: inline-block; */
+  border: 1px solid #999;
+  height: 40px;
+  padding: 0 6px;
+  flex-grow: 1;
+  border-radius: 6px;
+}
+
+
+/* 选填项 */
+.container .optional:not(.remarks) {
+  height: 68px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 12px;
+}
+.container .remarks{
+
+  display: flex;
+  /* height: 120px; */
+  justify-content: space-around;
+  padding: 0 12px;
+
+}
+.container .optional>text {
+  display: inline-block;
+  width: 90px;
+}
+.container .optional>input{
+  display: inline-block;
+  border: 1px solid #999;
+  height: 40px;
+  padding: 0 6px;
+  flex-grow: 1;
+  border-radius: 6px;
+}
+.container .remarks>textarea {
+  border: 1px solid #999;
+  height: 100px;
+  border-radius: 6px;
+  padding: 0 6px;
+  width: 100px;
+  flex-grow: 1;
+  position: relative;
+  padding-bottom: 14px;
+}
+.container .remarks text.tip {
+  position: absolute;
+  bottom: 0;
+  right: 4px;
+  font-size: 12px;
+  color: #999;
+}
+
+
+/* 图片上传 */
+.img-title,.img-tips{
+  padding: 0 12px;
+}
+.img-title{
+  margin-top: 20px;
+}
+.img-tips{
+  font-size: 12px;
+  color: #999;
+}
+
+.img-container{
+  display: flex;
+  padding: 14px;
+  flex-wrap: wrap;
+}
+.img-container>view {
+  width: 120px;
+  height: 120px;
+  border: 1px solid #ddd;
+  margin: 10px;
+  position: relative;
+}
+.img-container>view.preview-img>image {
+  width: 100%;
+  height: 100%;
+}
+.img-container>view.preview-img>text.delete{
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .3);
+  color: #fff;
+  font-size: 14px;
+}
+.img-container>.addImg{
+  font-size: 60px;
+  text-align: center;
+  line-height: 120px;
+}
+
+
+.bottomBtns{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 10px;
+  background-color: #fff;
+}
+.bottomBtns>button.commit{
+
+  width: 90%;
+
+}

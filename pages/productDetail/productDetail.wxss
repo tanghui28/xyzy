@@ -108,6 +108,7 @@
   display: flex;
   flex-direction: column;
   background-color: #fff;
+  margin-bottom:10px;
 }
 .remarks>.title{
   color:#999;
@@ -170,8 +171,64 @@
   padding:4px;
 }
 
-.submitBtn{
-  width:90%;
-  margin-top: 32px;
-  margin-bottom: 20px;
+.moreDetail{
+  background-color: #fff;
+  padding-bottom: 80px;
+}
+.moreDetail>.title{
+  color:#999;
+  padding:10px;
+  border-bottom:1px solid #ddd;
+}
+
+.moreDetail>.bigImg{
+  width: 100%;
+  height: 500rpx;
+  padding: 10px;
+}
+.moreDetail>.bigImg>image{
+  width: 100%;
+  height: 100%;
+}
+.moreDetail>.detailInfo{
+  height: 40px;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: flex-start;
+}
+.moreDetail>.detailInfo>text:nth-child(1){
+  width: 100px;
+  text-align: right;
+  padding-right: 14px;
+  color: #999;
+  line-height: 1rem;
+}
+.moreDetail>.detailInfo>text:nth-child(2){
+  flex-flow: 1;
+  color: #999;
+  line-height: 1rem;
+  word-break: break-all;
+}
+
+
+
+.bottomBtns{
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+  padding: 14px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+}
+.bottomBtns>.copy{
+  width: 120px;
+  margin-right: 14px;
+}
+
+.bottomBtns>.submitBtn {
+  flex-grow: 1;
 }

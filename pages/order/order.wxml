@@ -1,33 +1,39 @@
 <!--pages/order/order.wxml-->
 <!-- searchBar -->
 <view class="fixed">
+  <!-- 有货需求/无货需求切换 -->
+  <view class="tab">
+    <text bindtap="switchTab" data-status="1" class="{{ hasGoods == 1 ? 'active':'' }}">有货需求</text>
+    <text bindtap="switchTab" data-status="0" class="{{ hasGoods == 0 ? 'active':'' }}" >无货需求</text>
+  </view>
   <view class="searchBar" hover-class="none" hover-stop-propagation="false">
     <icon type="search" size="23" color="#999"></icon>
     <input type="text" value="{{keyWord}}" bindinput="bindInputChange" bindconfirm="searchMedicine" confirm-type="search" />
     <text bindtap="searchMedicine">搜索</text>
   </view>
   <!-- 筛选 -->
-  <view class="filterView">
+  <view wx:if="{{hasGoods == 1}}" class="filterView">
     <text>筛选:</text>
     <text bindtap="tapFilter" data-index="{{index}}" class="filterItem {{item.selected?'active':''}}" wx:for="{{filterItem}}" wx:key="{{index}}">{{item.filterName}}</text>
   </view>
 </view>
 <!--  需求单详情 -->
-<view class="orderList">
+<view class="orderList {{hasGoods == 1 ? 'hasGoods':'noGoods'}}">
     <view class="orderItem" wx:for="{{orderList}}" wx:key="{{index}}">
       <!-- 上 -->
       <view class="orderDate" >
-        <text>{{item.CreateTime1}}</text>
+        <text wx:if="{{hasGoods == 1}}">{{item.CreateTime1}}</text>
+        <text wx:else>{{item.created_time}}</text>
       </view>
       <!-- 中 需求详情-->
       <view class="orderDetail">
         <!-- 中左 图片-->
-        <view class="imgContainer">
+        <view wx:if="{{ hasGoods == 1 }}" class="imgContainer">
           <image  data-index="{{index}}" src="{{item.ImagePath}}"  binderror="errorPic" mode="aspectFit"></image>
         </view>
         
         <!-- 中中 名字 规格 厂家 购买数量 -->
-        <view class="orderInfo">
+        <view class="orderInfo {{hasGoods == 1?'hasGoods':''}}">
           <text class="productName">{{item.DrugsBase_DrugName}}</text>
           <text class="productSpec">{{item.DrugsBase_Specification}}</text>
           <text class="productFactory">{{item.DrugsBase_Manufacturer}}</text>
@@ -37,7 +43,7 @@
           </view>
         </view>
         <!-- 中右 -->
-        <view class="orderState">
+        <view  wx:if="{{ hasGoods == 1 }}" class="orderState">
           <text class="{{item.StatusInfo == '已采购'?'success':(item.StatusInfo == '已取消'?'cancel':'')}}">{{item.StatusInfo}}</text>
           <text>{{item.StatusInfoOperating}}</text>
         </view>
@@ -45,15 +51,19 @@
       <!-- 下 -->
       <view class="orderRemark">
         <!-- 下左 -->
-        <view class="orderRemarkDetail">
+        <view class="orderRemarkDetail {{hasGoods == 0 ?'noGoods':''}} ">
           <view wx:if="{{item.ExpectArriveTime1}}">
             <text>期望到货:</text>
             <text>{{item.ExpectArriveTime1}}</text>
           </view>
-          <text class="remark">{{item.remarks}}</text>
+          <text wx:if="{{  item.remarks }}" class="remark">备注:{{item.remarks}}</text>
         </view>
-        <!-- 下右  删除按钮 -->
-        <text wx:if="{{item.StatusInfo == '待审批'}}"  bindtap="deleteOrder" data-id="{{item.Id}}" data-index="{{index}}" class="deleteBtn">删除</text>
+        <!-- 下右  有货删除按钮 -->
+        <text wx:if="{{item.StatusInfo == '待审批' && hasGoods == '1' }}"  bindtap="deleteOrder" data-id="{{item.Id}}" data-index="{{index}}" class="deleteBtn">删除</text>
+        <!-- 无货编辑 -->
+        <text wx:if="{{ hasGoods == '0' }}" bindtap="NoGoodsEdit" data-index="{{index}}" class="deleteBtn">编辑</text>
+        <!-- 无货需求删除 -->
+        <text wx:if="{{ hasGoods == '0' }}"  bindtap="deleteNoGoods"  data-index="{{index}}" class="deleteBtn">删除</text>
       </view>
 
             <!-- 下下  采购回复 -->

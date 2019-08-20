@@ -47,6 +47,7 @@ page{
     align-items: flex-start;
     justify-content: flex-start;
     padding:10px 10px;
+    z-index: 99;
 }
 .searchSuggestion>text{
     font-size: 16px;
@@ -128,13 +129,28 @@ page{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.productList>.product>.productDetail>.pw {
+    color: #999;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.productList>.product>.productDetail>.spxq{
+    color:#999;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin:4px 0;
+}
 .productList>.product>.productDetail>.price{
     color:#999;
     font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-top:4px;
+
 }
 .productList>.product>.productDetail>.price>text{
     color:rgb(199, 15, 15);
@@ -154,4 +170,20 @@ page{
 .productList>.endLine>.line {
     flex-grow: 2;
     border-bottom: 1px dashed #ddd;
+}
+
+/* 手动添加按钮 */
+.addRequireProduct{
+    text-align: center;
+    padding: 14px;
+}
+.addRequireProduct>button{
+    width: 200px;
+    margin-top: 10px;
+    color: #179B16;
+    border:1px solid #179B16;
+    background-color: #fff;
+}
+.addRequireProduct>button.button-hover{
+    background-color: #DEDEDE;
 }

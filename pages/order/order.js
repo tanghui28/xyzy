@@ -12,32 +12,61 @@ Page({
     filterItem: [
       {
         filterName: "全部",
-        selected:true,
+        selected: true,
+        refresh:false
       },
       {
         filterName: "待审核",
-        selected:false,
+        selected: false,
+        refresh: false
       },
       {
         filterName: "已采购",
-        selected:false,
+        selected: false,
+        refresh: false
       },
       {
         filterName: "已出库",
-        selected:false,
+        selected: false,
+        refresh: false
       },
       {
         filterName: "已取消",
-        selected:false,
+        selected: false,
+        refresh: false
       }
     ],
     orderList: [],
-    showAll:false
+    showAll: false,
+    _hasGoods:1,                       //  1有货需求   0无货需求
+    // hasGoods:1,                       //  1有货需求   0无货需求
+  },
+
+  /**
+   * 
+   * 有货需求 / 无货需求  切换
+   */
+  switchTab(e) { 
+    if (e.currentTarget.dataset.status == 0) {
+
+      this.setData({
+        hasGoods:0
+      })
+
+    } else { 
+
+      this.setData({
+        hasGoods: 1
+      })
+
+    }
+
+
   },
 
   // 筛选
   tapFilter(e) { 
-    let temp = this.data.filterItem;
+    let temp = this.data.filterItem.slice(0);
     temp.forEach((val,index,arr) => {
      val.selected = index == e.target.dataset.index ? true : false;
     });
@@ -105,9 +134,14 @@ Page({
     this.setData({
       pageIndex:1
     })
-    this.getList(this.data.pageIndex);
+    if ( this.data.hasGoods == 1 ) { 
+      this.getList(this.data.pageIndex);
+    } else {
+      this.getNoProductList(this.data.pageIndex);
+    }
+    
   },
-  // 获取数据函数
+  // 获取有货需求数据函数
   getList(pageIndex = 1) { 
     let tempFilter = this.data.filterItem;
     let filterState = "";
@@ -124,9 +158,9 @@ Page({
         states: filterState,
         page: pageIndex
       },
-      // data: "&keyWord=" + this.data.keyWord + "&states=" + filterState + "&page=" + pageIndex,
+
       callback: res => { 
-        // console.log(res); 
+
         if (res.success) {
           res.data.list.forEach((val,i) => { 
             if (!val.ImagePath) { 
@@ -165,6 +199,48 @@ Page({
     
 
   },
+  // 获取无货需求数据
+  getNoProductList(pageIndex  = 1) { 
+
+    app.ajax({
+      url: "GetDemandGoodsList",
+      data: {
+        keyWord: this.data.keyWord,
+        page: pageIndex
+      },
+
+      callback: res => {
+
+        if (res.success) {
+
+          this.setData({
+            orderList: res.data.list,
+            pageIndex: res.data.page,
+            pageTotal: Math.ceil(res.data.recordCount / 10)
+          })
+          wx.stopPullDownRefresh();
+          if (res.data.list.length == 0) {
+            wx.showToast({
+              title: "暂无需求",
+              icon: "none"
+            })
+          }
+
+        } else {
+          wx.stopPullDownRefresh();
+          wx.showToast({
+            title: res.info,
+            icon: "none"
+          })
+
+        }
+
+      }
+
+    })
+
+
+  },
   // 错误图片
   errorPic(e) { 
     
@@ -181,12 +257,109 @@ Page({
   },
 
   /**
+   * 
+   * 删除无货需求
+   */
+  deleteNoGoods(e) { 
+
+    let index = e.currentTarget.dataset.index;
+    let id = this.data.orderList[index]['Id'];
+
+    wx.showModal({
+      content: '要删除这条需求吗?',
+      success: res => { 
+
+        if (res.confirm) {
+          let temp = this.data.orderList.slice(0);
+          temp.splice(index, 1);
+          this.setData({
+            orderList: temp
+          })
+          app.ajaxNo({
+            url: 'DeleteDemandGoods',
+            data: {
+              id
+            },
+            callback: res => {
+              if (res.success) {
+                wx.showToast({
+                  title: "删除成功",
+                  icon: "success"
+                })
+              } else {
+                wx.showToast({
+                  title: res.info,
+                  icon: "none"
+                })
+              }
+            }
+          })
+
+        }
+
+      }
+    })
+
+    
+
+
+  },
+
+  /**
+   * 
+   * 编辑无货需求
+   */
+  NoGoodsEdit(e) {
+    let index = e.currentTarget.dataset.index;
+    let id = this.data.orderList[index]['Id'];
+    let drugName = this.data.orderList[index]['DrugsBase_DrugName'];
+    let spec = this.data.orderList[index]['DrugsBase_Specification'];
+    let factory = this.data.orderList[index]['DrugsBase_Manufacturer'];
+    let count = this.data.orderList[index]['ProcurementNumber'];
+    let imgs = this.data.orderList[index]['ImageListImageList'];
+    wx.navigateTo({
+
+      url: `/pages/addRequireProduct/addRequireProduct?drugName=${drugName}&spec=${spec}&factory=${factory}&count=${count}&id=${id}&imgs=${imgs}`
+
+    })
+
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log("load")
 
-    this.getList(1)
+    this.getList(1);
+    let obj = this.data;
+    let that = this;
+    Object.defineProperty(obj, 'hasGoods', {
+      configurable: true,
+      enumerable: true,
+      get: function () {
+        return this._hasGoods;
+
+      },
+      set: function (val) {
+        if (val == this._hasGoods) {
+          return;
+        }
+        that.setData({
+          _hasGoods: val
+        })
+        if (val == 1) {
+          that.getList(1);
+        } else { 
+          that.getNoProductList(1);
+        }
+        
+      }
+    })
+    
+    this.setData({
+      hasGoods:1
+    })
+    
 
   },
 
@@ -226,7 +399,12 @@ Page({
     this.setData({
       pageIndex: 1
     });
-    this.getList();
+    if (this.data.hasGoods == 1) {
+      this.getList();
+    } else { 
+      this.getNoProductList();
+    }
+    
    
   },
 
@@ -245,43 +423,85 @@ Page({
         }
       })
 
-      app.ajaxNo({
-        url: "GetList",
-        data: {
-          keyWord: this.data.keyWord,
-          states: filterState,
-          page:this.data.pageIndex + 1
-        },
-        // data: "&keyWord=" + this.data.keyWord + "&states=" + filterState + "&page=" + (this.data.pageIndex + 1),
-        callback: res => { 
-          if (res.success) {
-            
-            let tempList = this.data.orderList;
-            res.data.list.forEach((val, ind) => {
-              if (!val.ImagePath) {
-                val.ImagePath = "/images/noPic.jpg";
-              }
-              tempList.push(val);
-            })
+      if (this.data.hasGoods == 1) {
+        app.ajaxNo({
+          url: "GetList",
+          data: {
+            keyWord: this.data.keyWord,
+            states: filterState,
+            page: this.data.pageIndex + 1
+          },
+          // data: "&keyWord=" + this.data.keyWord + "&states=" + filterState + "&page=" + (this.data.pageIndex + 1),
+          callback: res => {
+            if (res.success) {
 
-            this.setData({
-              orderList: tempList,
-              pageIndex: res.data.page,
-              pageTotal: Math.ceil(res.data.recordCount / 10)
-            })
+              let tempList = this.data.orderList;
+              res.data.list.forEach((val, ind) => {
+                if (!val.ImagePath) {
+                  val.ImagePath = "/images/noPic.jpg";
+                }
+                tempList.push(val);
+              })
+
+              this.setData({
+                orderList: tempList,
+                pageIndex: res.data.page,
+                pageTotal: Math.ceil(res.data.recordCount / 10)
+              })
 
 
-          } else { 
-            
-            wx.showToast({
-              title: res.info,
-              icon:"none"
-            })
+            } else {
+
+              wx.showToast({
+                title: res.info,
+                icon: "none"
+              })
+
+            }
 
           }
+        })
+      } else { 
 
-        }
-      })
+        app.ajaxNo({
+          url: "GetDemandGoodsList",
+          data: {
+            keyWord: this.data.keyWord,
+            page: this.data.pageIndex + 1
+          },
+          callback: res => {
+            if (res.success) {
+
+              let tempList = this.data.orderList;
+              res.data.list.forEach((val, ind) => {
+
+                tempList.push(val);
+              })
+
+              this.setData({
+                orderList: tempList,
+                pageIndex: res.data.page,
+                pageTotal: Math.ceil(res.data.recordCount / 10)
+              })
+
+
+            } else {
+
+              wx.showToast({
+                title: res.info,
+                icon: "none"
+              })
+
+            }
+
+          }
+        })
+
+
+
+      }
+
+      
 
     }
     

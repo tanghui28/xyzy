@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 12,
 			"list": [
 				{
 					"id": -1,
@@ -122,6 +122,14 @@
 					"id": -1,
 					"name": "门店选择",
 					"pathName": "pages/chooseStore/chooseStore",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "添加需求商品",
+					"pathName": "pages/addRequireProduct/addRequireProduct",
+					"query": "drugName=红霉素&spec=10g*5支&factory=四川太极&count=5",
 					"scene": null
 				}
 			]

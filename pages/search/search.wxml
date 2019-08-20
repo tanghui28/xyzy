@@ -28,14 +28,32 @@
             <text class="drugName">{{item.DrugsBase_DrugName}}</text>
             <text class="spec">{{item.DrugsBase_Specification}}</text>
             <text class="factory">{{item.DrugsBase_Manufacturer}}</text>
-            <view class="price">建议零售价<text class="priceNum">{{item.PriceS}}</text><text wx:if="{{item.PriceE != item.PriceS}}"> - </text><text wx:if="{{item.PriceE != item.PriceS}}">{{item.PriceE}}</text>
+            <text class="pw">{{item.DrugsBase_ApprovalNumber}}</text>
+            <!-- 效期 -->
+            <view class="spxq">
+                效期
+                <text>{{ item.Spxq_S }}</text>
+                <text wx:if="{{  item.Spxq_E !=  item.Spxq_S }}"> ~ </text>
+                <text wx:if="{{  item.Spxq_E !=  item.Spxq_S }}">{{ item.Spxq_E }}</text>
+            </view>
+            <!-- 建议零售价 -->
+            <view class="price">建议零售价
+                <text class="priceNum">{{item.PriceS}}</text>
+                <text wx:if="{{item.PriceE != item.PriceS}}"> - </text>
+                <text wx:if="{{item.PriceE != item.PriceS}}">{{item.PriceE}}</text>
             </view>
         </view>
     </view>
+    <!-- 底线 -->
     <view wx:if="{{pageIndex ==  pageTotal}}" class="endLine">
         <text class="line"></text>
         <text>我是有底线的</text>
         <text class="line"></text>
+    </view>
+    <!-- 没有找到想要的商品 手动添加 -->
+    <view class="addRequireProduct">
+        <text>没有找到想要的商品 ?</text>
+        <button bindtap="toAddRequireProduct">点击手动添加</button>
     </view>
 </view>
 

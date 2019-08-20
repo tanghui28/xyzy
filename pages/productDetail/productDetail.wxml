@@ -60,4 +60,43 @@
   
 </view>
 
-<button bindtap="submitProduct" class="submitBtn" type="primary">提交</button>
+<!-- 产品详情 -->
+<view class="moreDetail">
+  <view class='title'>
+    <text>详情</text>
+  </view>
+  <!-- 大图 -->
+  <view class="bigImg">
+    <image src="{{productDetail.imagePath}}" mode="aspectFill"></image>
+  </view>
+  <!-- 详情 -->
+  <view class="detailInfo">
+    <text>通用名</text>
+    <text>{{productDetail.drugName}}</text>
+  </view>
+  <view  class="detailInfo">
+    <text>商品名</text>
+    <text>{{ productDetail.DrugsBase_ProName || ' - '}}</text>
+  </view>
+  <view  class="detailInfo">
+    <text>规格</text>
+    <text>{{productDetail.drugSpec}}</text>
+  </view>
+  <view  class="detailInfo">
+    <text>生产厂家</text>
+    <text>{{productDetail.drugManufacturer}}</text>
+  </view>
+  <view  class="detailInfo">
+    <text>批准文号</text>
+    <text>{{ productDetail.DrugsBase_ApprovalNumber }}</text>
+  </view>
+
+</view>
+
+
+<!--  复制 / 提交 按钮 -->
+<view class="bottomBtns">
+  <button bindtap="copyDetail" class="copy">复制</button>
+  <button bindtap="submitProduct" class="submitBtn" type="primary">提交</button>
+</view>
+

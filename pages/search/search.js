@@ -292,13 +292,26 @@ Page({
       priceE = this.data.list[index]['PriceE'],
       imagePath = this.data.list[index]['ImagePath'],
       goodsId = this.data.list[index]['Goods_ID'];
+    // /DrugsBase_ApprovalNumber  DrugsBase_ProName
+    let DrugsBase_ProName = this.data.list[index]['DrugsBase_ProName'] || '',
+       DrugsBase_ApprovalNumber = this.data.list[index]['DrugsBase_ApprovalNumber'] || '';
     
     wx.navigateTo({
-      url: "/pages/productDetail/productDetail?drugName=" + drugName + "&drugSpec=" + drugSpec + "&drugManufacturer=" + drugManufacturer + "&priceS=" + priceS + "&priceE=" + priceE + "&imagePath=" + imagePath + "&goodsId=" + goodsId
+      url: "/pages/productDetail/productDetail?drugName=" + drugName + "&drugSpec=" + drugSpec + "&drugManufacturer=" + drugManufacturer + "&priceS=" + priceS + "&priceE=" + priceE + "&imagePath=" + imagePath + "&goodsId=" + goodsId + '&DrugsBase_ProName=' + DrugsBase_ProName + '&DrugsBase_ApprovalNumber=' + DrugsBase_ApprovalNumber
     })
 
 
 
+  },
+
+  /**
+   * 
+   * 点击手动添加商品
+   */
+  toAddRequireProduct() { 
+    wx.navigateTo({
+      url: '/pages/addRequireProduct/addRequireProduct'
+    })
   },
 
   /**

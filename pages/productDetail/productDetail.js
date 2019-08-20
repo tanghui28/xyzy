@@ -99,6 +99,20 @@ Page({
   },
 
   /**
+   * 
+   * 复制按钮 跳转至添加需求商品页面
+   */
+  copyDetail() { 
+
+    wx.navigateTo({
+
+      url: `/pages/addRequireProduct/addRequireProduct?drugName=${this.data.productDetail.drugName}&spec=${this.data.productDetail.drugSpec}&factory=${this.data.productDetail.drugManufacturer}`
+
+    })
+
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {

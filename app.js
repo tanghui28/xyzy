@@ -19,7 +19,7 @@ App({
 
     // https://zy.sosoyy.com:449
     // https://zy.sosoyy.com:449
-    //http://192.168.49:8083
+    //http://192.168.1.49:8083
     
 
   },
@@ -44,7 +44,7 @@ App({
               if (res.code) {
 
                 wx.request({
-                  url: "https://zy.sosoyy.com:449/WXApi/wxlogin",
+                  url: this.globalData.url+"wxlogin",
                   data: {
                     code: res.code
                   },
@@ -118,7 +118,7 @@ App({
               success: res => {
                 if (res.code) {
                   wx.request({
-                    url: "https://zy.sosoyy.com:449/WXApi/wxlogin",
+                    url: this.globalData.url+"wxlogin",
                     data: {
                       code: res.code
                     },
@@ -182,7 +182,7 @@ App({
       mask: true
     });
     wx.request({
-      url: 'https://zy.sosoyy.com:449/WXApi/' + url,
+      url: this.globalData.url + url,
       header:this.globalData.header,
       data:data,
       method: 'post',
@@ -208,7 +208,7 @@ App({
   //请求数据无加载中效果
   ajaxNo({ url,data="",callback}) {
     wx.request({
-      url: 'https://zy.sosoyy.com:449/WXApi/' + url,
+      url: this.globalData.url + url,
       header:this.globalData.header,
       data:data,
       method: 'post',
@@ -244,6 +244,8 @@ App({
     })
   },
   globalData: {
+    url: 'https://zy.sosoyy.com:449/WXApi/',
+    imgUrl: 'https://zy.sosoyy.com:449/',
     _userInfo: '',
     wx_token:"",
     header: { "Cookie": '' },      //请求携带此header , 存放后端返回的sessionId
