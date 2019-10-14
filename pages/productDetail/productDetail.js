@@ -12,6 +12,12 @@ Page({
     date: "",
     remark: ""
   },
+  // 预览图片
+  previewImg() { 
+    wx.previewImage({
+      urls: [this.data.productDetail.imagePath]
+    })
+  },
   //购买数量++
   addBuyCount() {
     this.setData({

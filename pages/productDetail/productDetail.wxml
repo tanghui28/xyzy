@@ -2,7 +2,7 @@
 <!-- 上 商品详情 -->
 <view class="product">
   <!-- 上左图片 -->
-  <image class="productImage" src="{{productDetail.imagePath}}" mode="aspectFit"></image>
+  <image  bindtap="previewImg" class="productImage" src="{{productDetail.imagePath}}" mode="aspectFit"></image>
   <!-- 上右 文字详情 -->
   <view class="productInfo">
     <text class="productName">{{productDetail.drugName}}</text>
@@ -67,7 +67,7 @@
   </view>
   <!-- 大图 -->
   <view class="bigImg">
-    <image src="{{productDetail.imagePath}}" mode="aspectFill"></image>
+    <image bindtap="previewImg" src="{{productDetail.imagePath}}" mode="aspectFill"></image>
   </view>
   <!-- 详情 -->
   <view class="detailInfo">

@@ -68,7 +68,7 @@ page{
     align-items: center;
     height:40px;
 }
-.searchHistory>.historyTitle>text{
+.searchHistory>.historyTitle>text.title{
     height:24px;
     line-height: 24px;
     font-size: 16px;
@@ -84,7 +84,7 @@ page{
 }
 .searchHistory>.historyDetail>text{
     background-color: #efeff4;
-    padding:4px 12px;
+    padding:4px 16px;
     border-radius: 20px;
     margin:6px;
     font-size: 14px;
@@ -177,7 +177,11 @@ page{
     text-align: center;
     padding: 14px;
 }
-.addRequireProduct>button{
+.addRequireProduct>.add{
+    color: #179B16;
+    display: block;
+}
+/* .addRequireProduct>button{
     width: 200px;
     margin-top: 10px;
     color: #179B16;
@@ -186,4 +190,4 @@ page{
 }
 .addRequireProduct>button.button-hover{
     background-color: #DEDEDE;
-}
+} */

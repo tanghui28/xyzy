@@ -6,14 +6,14 @@ Page({
    */
   data: {
     keyWord:"",
-    list:[],
+    list:null,
     historyArr: [],
     searchSuggestions: [],
     pageIndex: 1,
     pageTotal: 0,
     getSuggestionTime: 0,
     getSearchTime: 0,
-    isInput:true,              
+    isInput: true, 
   },
   //点击取消搜索,返回上一页
   cancel() { 
@@ -103,20 +103,24 @@ Page({
   // 点击搜索建议词
   tapSuggest(e) { 
     // console.log(e.currentTarget.dataset);
+    //缓存搜索关键词
+    this.searchSave(e.currentTarget.dataset.dname);
+    //清除搜索建议
+    // this.setData({
+    //   searchSuggestions: []
+    // })
+
     this.setData({
       keyWord: e.currentTarget.dataset.dname + " " + e.currentTarget.dataset.pname,
       pageIndex: 1,
       pageTotal: 0,
-      list: []
+      list: [],
+      searchSuggestions: []
     })
     //请求数据
     this.getList();
-    //缓存搜索关键词
-    this.searchSave(e.currentTarget.dataset.dname);
-    //清除搜索建议
-    this.setData({
-      searchSuggestions:[]
-    })
+    
+   
     
   },
   //点击删除搜索历史,清除当前数据及缓存
@@ -149,7 +153,7 @@ Page({
       searchSuggestions: [],
       pageIndex: 1,
       pageTotal: 0,
-      list:[]
+      list:null
     })
 
     this.getList();
@@ -181,7 +185,8 @@ Page({
     if (keyWord == "") {                   //input值为空时 , 直接将搜索建议数组置为空
 
       this.setData({
-        searchSuggestions: []
+        searchSuggestions: [],
+        list:null
       })
 
     } else {                               //input值不为空时, 从后端获取数据
@@ -258,6 +263,10 @@ Page({
               pageTotal: Math.ceil(res.data.recordCount / 10)
             })
           } else { 
+
+             this.setData({
+               list: [],
+             })
 
             wx.showToast({
               title: "未搜索到相关产品,请调整关键词后重试!",
